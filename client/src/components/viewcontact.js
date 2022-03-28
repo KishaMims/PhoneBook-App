@@ -1,44 +1,74 @@
 import { useState, useEffect } from "react";
-import Form from "./form";
 
-function Students() {
 
-    const [students, setStudents] = useState([]);
+function SingleContact() {
+
+    const [contacts, setContacts] = useState([]);
+    const [foundContacts, setFoundContacts] = useState(contacts);
+    const [firstname, setName] = useState('');
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/students")
-        .then((response) => response.json())
-        .then(students =>{
-            //setStudents((students[3]));
-            //console.log("Testing", typeof students);
-            for (let index in students){
-               if( index !== "3"){
-                   setStudents(students);
-               }
-            };       
-        })
-        
+        fetch('http://localhost:5000/contacts')
+            .then((response) => response.json())
+            //.then(response => response.text())
+            .then(contacts => {
+                setContacts(contacts);
+            }
+
+            )
+
     }, []);
+    console.log(contacts);
+    const filter = (e) => {
+        const keyword = e.target.value;
 
-    
+        if (keyword !== '') {
+            const results = contacts.filter((contact) => {
+                return contact.firstname.toLowerCase().startsWith(keyword.toLowerCase());
 
-    const addStudent = (newStudent) => {
-        //console.log(newStudent);
-        //postStudent(newStudent);
-        setStudents((students) => [...students, newStudent]);
-    }
+            });
+
+            setFoundContacts(results);
+
+        } else {
 
 
+            setFoundContacts(contacts)
+
+        }
+
+        setName(keyword);
+
+    };
     return (
-      <div className="students">
-        <h2> List of Students </h2>
-        <ul>
-            {students.map(student =>
-                <li key={student.id}> {student.firstname} {student.lastname}</li>)}
-        </ul>
-        <Form addStudent={addStudent} />
-      </div>
+        <div className="foundcontact">
+            <input
+                type="search"
+                value={firstname}
+                onChange={filter}
+                className="input"
+                placeholder="Search"
+            />
+        <div className="contact-list">
+            {foundContacts && foundContacts.length > 0 ? (
+                foundContacts.map((contacts, index) => (
+                    <li key={index}>
+                    <span className="contact-firstname">{contacts.firstname}</span>
+                     <span className="contact-lastname">{contacts.lastname}</span> 
+                     <span className="contact-phone">{contacts.phone}</span>
+                     <span className="contact-email">{contacts.email}</span> 
+                     <span className="contact-notes">{contacts.notes}</span>
+                     </li>
+                ))
+            ) : (
+            <h1>No Results Found</h1>
+            )}
+        </div>
+        </div>
     );
-  }
-  
-  export default Students;
+}
+
+export default SingleContact;
+
+
+
