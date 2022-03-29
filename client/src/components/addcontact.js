@@ -156,7 +156,6 @@ const [contacts, setContacts] = useState([]);
                     type="text"
                     id="add-contact-notes"
                     placeholder="Notes"
-                    required
                     value={newcontact.notes}
                     onChange={handleNotesChange}
                 />

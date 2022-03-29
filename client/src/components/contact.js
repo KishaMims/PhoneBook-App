@@ -26,7 +26,8 @@ const [contacts, setContacts] = useState([]);
           <h1> Contacts</h1>
           <ul>
               {contacts.map((contact, index) =>
-                  <li key={index}> {contact.firstname} {contact.lastname} {contact.phone} {contact.email} {contact.notes}</li>)}
+                  <li key={index}> 
+                {contact.firstname} {contact.lastname} {contact.phone} {contact.email} {contact.notes}</li>)}
           </ul>
           {/* <Form addContact={addContact}/> */}
         </div>
