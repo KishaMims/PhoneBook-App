@@ -53,11 +53,11 @@ function SingleContact() {
             {foundContacts && foundContacts.length > 0 ? (
                 foundContacts.map((contacts, index) => (
                     <li key={index}>
-                    <span className="contact-firstname">{contacts.firstname}</span>
+                    <span className="contact-firstname">Name: {contacts.firstname}</span>
                      <span className="contact-lastname">{contacts.lastname}</span> <br />
-                     <span className="contact-phone">{contacts.phone}</span><br />
-                     <span className="contact-email">{contacts.email}</span> <br />
-                     <span className="contact-notes">{contacts.notes}</span><br />
+                     <span className="contact-phone">Phone: {contacts.phone}</span><br />
+                     <span className="contact-email">Email: {contacts.email}</span> <br />
+                     <span className="contact-notes">Notes: {contacts.notes}</span><br />
                      </li>
                 ))
             ) : (

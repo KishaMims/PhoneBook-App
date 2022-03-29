@@ -6,6 +6,109 @@ body {
   background-color: rgb(26, 25, 25);
   color: white;
 }
+.contact-list {
+  box-shadow: 0 4px 8px 0 rgba(160, 155, 155, 0.63);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: rgb(26, 25, 25);
+  font-size: 18px;
+  transition: 0.2s;
+}
+ul li:nth-child(odd) {
+  background: #756b6b;
+}
+li
+{
+    list-style-type: none;
+}
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form {
+  background: #3ebd03;
+  max-width: 400px;
+  margin: 0 auto;
+}
+label {
+  line-height: 2;
+  text-align: center;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: rgb(248, 248, 248);
+  font-size: 14px;
+  font-weight: 200;
+}
+input {
+  width: 50%;
+}
+button[type="submit"],
+input[type="submit"] {
+  background: #3a3839;
+  color: rgb(17, 19, 13);
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: #505050;
+}
+
+button[type="submit"]:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
+
+input:disabled {
+  opacity: 0.4;
+}
+
+input[type="button"]:hover {
+  transition: 0.3s all;
+}
+
+button[type="submit"],
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+}
+input[type=text] {
+  border: 2px solid rgb(136, 132, 110);
+  border-radius: 4px;
+}
+input[type=time] {
+  border: 2px solid rgb(136, 132, 110);
+  border-radius: 4px;
+}
+input[type=date] {
+  border: 2px solid rgb(136, 132, 110);
+  border-radius: 4px;
+}
+input[type=""] {
+  border: 2px solid rgb(136, 132, 110);
+  border-radius: 4px;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
