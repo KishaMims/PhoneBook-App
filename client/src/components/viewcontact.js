@@ -40,6 +40,8 @@ function SingleContact() {
         setName(keyword);
 
     };
+
+
     return (
         <div className="foundcontact">
             <input
@@ -47,7 +49,7 @@ function SingleContact() {
                 value={firstname}
                 onChange={filter}
                 className="input"
-                placeholder="Search"
+                placeholder="🔍 Search"
             />
         <div className="contact-list">
             {foundContacts && foundContacts.length > 0 ? (

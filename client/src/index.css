@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(26, 25, 25);
   color: white;
+  font-size: x-large;
 }
 .contact-list {
   box-shadow: 0 4px 8px 0 rgba(160, 155, 155, 0.63);

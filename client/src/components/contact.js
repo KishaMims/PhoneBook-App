@@ -1,9 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-//import Form from './createcontacts';
+// import EditContact from './/updatecontact';
+// import ReadOnlyRow from '/.readonly';
+
 
 export default function Contact() {
 const [contacts, setContacts] = useState([]);
+//const [updatecontact, setUpdatedcontact]= useState(contacts);
+//const [editdedContact, setEditedContact] = useState(contacts);
 
     useEffect(() => {
         fetch('http://localhost:5000/contacts')
@@ -20,6 +24,42 @@ const [contacts, setContacts] = useState([]);
     // const addContact = (contact) => {
     //   setContacts((contacts) => [...contacts, contact]);
     // }
+  // const [editFormData, setEditFormData] = useState({
+  //   firstname: "",
+  //   lastname: "",
+  //   email: "",
+  //   phone: "",
+  //   notes: ""
+  //   }); 
+  
+  // const [editContactId, setEditContactId] = useState(null);
+  //   // const editContact = (editedContact) => {
+  //   //   setEditedContact((editdedContact) => [...editdedContact, contacts]);
+  //   // }
+  // const handleAddFormChange = (event) => {
+  // event.preventDefault();
+  
+  // const handleEditFormChange = (event) => {
+  // event.preventDefault();
+  
+  // const handleEditFormSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   const editedContact = {
+  //     firstname: editFormData.firstName,
+  //     lastname: editFormData.lastname,
+  //     email: editFormData.email,
+  //     phone: editFormData.phone,
+  //     notes: editFormData.notes,
+  //   };
+  
+  //   const index = contacts.findIndex((contact) => contact.id === editContactId);
+
+  //   newContacts[index] = editedContact;
+
+  //   setContacts(newContacts);
+  //   setEditContactId(null);
+  // };
 
   return (
         <div className="contacts">
@@ -28,8 +68,9 @@ const [contacts, setContacts] = useState([]);
               {contacts.map((contact, index) =>
                   <li key={index}> 
                 {contact.firstname} {contact.lastname} {contact.phone} {contact.email} {contact.notes}</li>)}
+                {/* <button onClick={()=>className="edit-button">Edit</button> */}
           </ul>
-          {/* <Form addContact={addContact}/> */}
+          {/* <EditContact EditContact={EditContact}/>  */}
         </div>
       );
     }
