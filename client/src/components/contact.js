@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import Form from './createcontacts';
+//import Form from './createcontacts';
 
 export default function Contact() {
 const [contacts, setContacts] = useState([]);
@@ -17,9 +17,9 @@ const [contacts, setContacts] = useState([]);
 
     }, []);
 
-    const addContact = (contact) => {
-      setContacts((contacts) => [...contacts, contact]);
-    }
+    // const addContact = (contact) => {
+    //   setContacts((contacts) => [...contacts, contact]);
+    // }
 
   return (
         <div className="contacts">
@@ -28,7 +28,7 @@ const [contacts, setContacts] = useState([]);
               {contacts.map((contact, index) =>
                   <li key={index}> {contact.firstname} {contact.lastname} {contact.phone} {contact.email} {contact.notes}</li>)}
           </ul>
-          <Form addContact={addContact}/>
+          {/* <Form addContact={addContact}/> */}
         </div>
       );
     }

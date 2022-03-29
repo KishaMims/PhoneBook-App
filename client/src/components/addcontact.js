@@ -1,7 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Form = (props) => {
-    const [contact, setContact] = useState({
+const Form = () => {
+const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/contacts')
+           .then((response) => response.json())
+           //.then(response => response.text())
+            .then(contacts => {
+                setContacts(contacts);
+            }
+
+            )
+
+    }, []);
+
+    const addContact = (contact) => {
+        setContacts((contacts) => [...contacts, contact]);
+      }
+  
+
+
+    const [newcontact, setNewContact] = useState({
         firstname: "",
         lastname: "",
         email: "",
@@ -9,50 +29,70 @@ const Form = (props) => {
         notes: ""
     });
 
+
+    // const Form = (props) => { prop in case we need to change this back
+
+
     //create functions that handle the event of the user typing into the form
     const handleNameChange = (event) => {
         const firstname = event.target.value;
-        setContact((contact) => ({ ...contact, firstname }));
+        setNewContact((newcontact) => ({ ...newcontact, firstname }));
 
     }
 
     const handleLastnameChange = (event) => {
         const lastname = event.target.value;
-        setContact((contact) => ({ ...contact, lastname }));
+        setNewContact((newcontact) => ({ ...newcontact, lastname }));
     }
 
 
     const handleEmailChange = (event) => {
         const email = event.target.value;
-        setContact((contact) => ({ ...contact, email}));
+        setNewContact((newcontact) => ({ ...newcontact, email}));
 
     }
 
     const handlePhoneChange = (event) => {
         const phone = event.target.value;
-        setContact((contact) => ({ ...contact, phone}));
+        setNewContact((newcontact) => ({ ...newcontact, phone}));
 
     }
 
     const handleNotesChange = (event) => {
         const notes = event.target.value;
-        setContact((contact) => ({ ...contact, notes}));
+        setNewContact((newcontact) => ({ ...newcontact, notes}));
 
     }
     //A function to handle the post request
-    const postcontact = (newcontact) => {
+    const postcontact = (addnewcontact) => {
         return fetch('http://localhost:5000/api/contacts', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(newcontact)
+        body: JSON.stringify(addnewcontact)
       }).then((response) => {
           return response.json()
       }).then((data) => {
         console.log("From the post ", data);
-        props.addcontact(data);
+        addContact(data);
       
     });
     }
+
+
+    // this is the post without links
+    // const postcontact = (newcontact) => {
+    //     return fetch('http://localhost:5000/api/contacts', {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'}, 
+    //     body: JSON.stringify(newcontact)
+    //   }).then((response) => {
+    //       return response.json()
+    //   }).then((data) => {
+    //     console.log("From the post ", data);
+    //     props.addcontact(data);
+      
+    // });
+    // }
 
     const handleSubmit = (e) => {
         let emptyContact = {
@@ -63,13 +103,14 @@ const Form = (props) => {
             notes: ""
         }
         e.preventDefault();
-        setContact(contact);
-        postcontact(contact);
-        props.addContact(contact);
-        setContact(emptyContact);
+        setNewContact(newcontact);
+        postcontact(newcontact)
+        setNewContact(emptyContact);
+       
         
     };
 
+   
     return (
         <form onSubmit={handleSubmit}>
             <fieldset>
@@ -79,7 +120,7 @@ const Form = (props) => {
                     id="add-contact-name"
                     placeholder="First Name"
                     required
-                    value={contact.name}
+                    value={newcontact.name}
                     onChange={handleNameChange}
 
                 />
@@ -89,7 +130,7 @@ const Form = (props) => {
                     id="add-contact-lastname"
                     placeholder="Last Name"
                     required
-                    value={contact.lastname}
+                    value={newcontact.lastname}
                     onChange={handleLastnameChange}
                 />
                   <label>Email</label>
@@ -98,7 +139,7 @@ const Form = (props) => {
                     id="add-contact-email"
                     placeholder="Last Name"
                     required
-                    value={contact.email}
+                    value={newcontact.email}
                     onChange={handleEmailChange}
                 />
                   <label>Phone</label>
@@ -107,7 +148,7 @@ const Form = (props) => {
                     id="add-contact-phone"
                     placeholder="Add Phone"
                     required
-                    value={contact.phone}
+                    value={newcontact.phone}
                     onChange={handlePhoneChange}
                 />
                      <label>Notes</label>
@@ -116,12 +157,13 @@ const Form = (props) => {
                     id="add-contact-notes"
                     placeholder="Notes"
                     required
-                    value={contact.notes}
+                    value={newcontact.notes}
                     onChange={handleNotesChange}
                 />
             </fieldset>
             <button type="submit">Add</button>
         </form>
+        
     );
 };
 
