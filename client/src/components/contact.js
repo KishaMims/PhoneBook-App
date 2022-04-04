@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
+import { FiEdit } from "react-icons/fi";
+
 // import EditContact from './/updatecontact';
 // import ReadOnlyRow from '/.readonly';
 
@@ -65,12 +67,17 @@ const [contacts, setContacts] = useState([]);
         <div className="contacts">
           <h1> Contacts</h1>
           <ul>
-              {contacts.map((contact, index) =>
-                  <li key={index}> 
-                {contact.firstname} {contact.lastname} {contact.phone} {contact.email} {contact.notes}</li>)}
+
+              {contacts.map((contact, index) => 
+                 
+                   <li key={index}> 
+               {contact.firstname} {contact.lastname} {contact.phone} {contact.email} {contact.notes}<button className='editName'><FiEdit /></button></li>)}
                 {/* <button onClick={()=>className="edit-button">Edit</button> */}
           </ul>
+          
           {/* <EditContact EditContact={EditContact}/>  */}
+          
         </div>
+        
       );
     }
